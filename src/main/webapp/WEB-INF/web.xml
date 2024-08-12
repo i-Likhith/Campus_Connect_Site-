@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>collegemanagement2</display-name>
+ 
+    <servlet>
+    <servlet-name>apple</servlet-name>
+    <servlet-class>p1.ValidAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>apple</servlet-name>
+    <url-pattern>/first</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+    <servlet-name>ball</servlet-name>
+    <servlet-class>p1.Registerofstudent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>ball</servlet-name>
+    <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>cat</servlet-name>
+    <servlet-class>p1.Updateofstudent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>cat</servlet-name>
+    <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>dog</servlet-name>
+    <servlet-class>p1.Deletionofstudent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>dog</servlet-name>
+    <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>egg</servlet-name>
+    <servlet-class>p1.Resultofstudent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>egg</servlet-name>
+    <url-pattern>/result</url-pattern>
+    </servlet-mapping>
+    
+</web-app>

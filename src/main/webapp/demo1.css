@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+body
+{
+	background-color:lavender;
+	text-align:center;	
+}
+input
+{
+	color:green;
+	font-size:16px;
+	margin:4px 2px;
+	border-radius:14px;
+}
