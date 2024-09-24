@@ -32,21 +32,21 @@ public class Registerofstudent extends HttpServlet {
 		int m6 = Integer.parseInt(request.getParameter("t8"));
 		
 		try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		System.out.println("Driver is loaded");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("Driver is loaded");
+				
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CampusConnectPortal","username","password");
+			System.out.println("Connection is established");
+				
+			Statement stmt = con.createStatement();
+			int val = stmt.executeUpdate("insert into studentsinfo values("+id+",'"+name+"',"+m1+","+m2+","+m3+","+m4+","+m5+","+m6+")");
 			
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CampusConnectPortal","username","password");
-		System.out.println("Connection is established");
-			
-		Statement stmt = con.createStatement();
-		int val = stmt.executeUpdate("insert into studentsinfo values("+id+",'"+name+"',"+m1+","+m2+","+m3+","+m4+","+m5+","+m6+")");
-		
-		pw.println("registration success");	
-		/*if(r>0)
-  			pw.println("registration success");
-		else 
-			pw.println("registration unsuccess");*/
-		con.close();
+			pw.println("registration success");	
+			/*if(r>0)
+	  			pw.println("registration success");
+			else 
+				pw.println("registration unsuccess");*/
+			con.close();
 			
 		}
 		catch(ClassNotFoundException e)
