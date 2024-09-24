@@ -13,43 +13,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import com.mysql.*;
-/**
- * Servlet implementation class ValidAdmin
- */
 @WebServlet("/ValidAdmin")
 public class ValidAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ValidAdmin() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
-
+	public ValidAdmin() {	 
+		super();
+	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		PrintWriter pw=response.getWriter();
-		String name=request.getParameter("t1");
-		String pwd=request.getParameter("t2");
-		//pw.println(name);
-		//pw.println(pwd);
+		PrintWriter pw = response.getWriter();
+		String admin_username = request.getParameter("t1");
+		String admin_password = request.getParameter("t2");
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			pw.println("driver loaded");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/collegemanagement2","root","7890");
+			
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CampusConnectPortal","username","password");
 			pw.println("Connection established");
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery("select * from admin where username='"+name+"' AND password='"+pwd+"'");
+			
+			Statement st = con.createStatement();
+			String query = "select * from admin where username='"+admin_username+"' AND password='"+admin_password+"'";
+			ResultSet rs = st.executeQuery(query);
+			
 			if(rs.next())
 			{
 				response.sendRedirect("adminindex.html");
@@ -64,6 +51,5 @@ public class ValidAdmin extends HttpServlet {
 		{
 			pw.println("error");
 		}
-
 	}
 }
