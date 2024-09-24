@@ -12,51 +12,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Deletionofstudent
- */
 @WebServlet("/Deletionofstudent")
 public class Deletionofstudent extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+private static final long serialVersionUID = 1L;
+
     public Deletionofstudent() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter pw=response.getWriter();
+		PrintWriter pw = response.getWriter();
+		int pin = Integer.parseInt(request.getParameter("t1"));;
 		try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		System.out.println("Driver is loaded");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/collegemanagement2","root","7890");
+			
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CampusConnectPortal","username","password");
 		System.out.println("Connection is established");
-		Statement stmt=con.createStatement();
-		int dm=Integer.parseInt(request.getParameter("t1"));;
-		String h="delete from Studentsinfo where id="+dm+" ";
-		stmt.execute(h);
+			
+		Statement stmt = con.createStatement();
+		String query = "delete from Studentsinfo where id="+pin+" ";
+		stmt.execute(query);
 		
-pw.println("Deletion of students record is successful");	
-/*if(r>1)pw.println("registration success");
-	else 
-		pw.println("registration unsuccess");*/
-con.close();
+		pw.println("Deletion of student record is successful");	
+		/*if(r>1)pw.println("registration success");
+			else 
+				pw.println("registration unsuccess");*/
+		con.close();
+			
 		}
 		catch(ClassNotFoundException e)
 		{
 			pw.println("class not found");
-			}
+		}
 		catch(Exception e)
 		{
 			pw.println("connection error");
 		}
 	}
-
 }
