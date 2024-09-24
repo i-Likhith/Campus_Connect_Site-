@@ -21,29 +21,33 @@ private static final long serialVersionUID = 1L;
     }
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
-		int pin = Integer.parseInt(request.getParameter("t1"));;
-		try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		System.out.println("Driver is loaded");
-			
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CampusConnectPortal","username","password");
-		System.out.println("Connection is established");
-			
-		Statement stmt = con.createStatement();
-		String query = "delete from Studentsinfo where id="+pin+" ";
-		stmt.execute(query);
+		int pin = Integer.parseInt(request.getParameter("t1"));
 		
-		pw.println("Deletion of student record is successful");	
-		/*if(r>1)pw.println("registration success");
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("Driver is loaded");
+				
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/CampusConnectPortal","username","password");
+			System.out.println("Connection is established");
+				
+			Statement stmt = con.createStatement();
+			String query = "delete from Studentsinfo where id="+pin+" ";
+			stmt.execute(query);
+			
+			pw.println("Deletion of student record is successful");	
+			/*if(r>1)
+   				pw.println("registration success");
 			else 
 				pw.println("registration unsuccess");*/
-		con.close();
-			
+			con.close();
+				
 		}
+			
 		catch(ClassNotFoundException e)
 		{
 			pw.println("class not found");
 		}
+			
 		catch(Exception e)
 		{
 			pw.println("connection error");
